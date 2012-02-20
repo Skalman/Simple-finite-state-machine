@@ -1,5 +1,5 @@
 /*
- * Simple finite state machine by Dan Wolff (wlff.se/finite-state-machine/)
+ * Simple finite state machine by Dan Wolff (wlff.se/simple-state-machine/)
  * No license, this code is in the public domain. I do however appreciate attribution.
  */
 
