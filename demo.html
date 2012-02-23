@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Simple finite state machine demo (JavaScript)</title>
 		<style>
-			html {
+			body {
 				margin:1em 3em;
 				font:100%/1.5 Arial, sans-serif;
 			}
@@ -73,7 +73,7 @@
 					footer li { display:inline; }
 					footer li:first-child::after { content:" • ";}
 
-			/* code */
+			/* code: keywords, strings and comments */
 			.k { font-weight:bold; }
 			.s { color:#c00; }
 			.c { color:#090; }
@@ -123,8 +123,16 @@
 		warn:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 		panic: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
 		calm:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-		clear: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// "*" allows all states</span>
+		clear: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
 }});</code></pre>
+
+<pre><code><span class="c">// fsm.current === "green"</span>
+<span class="k">if</span> (fsm.can(<span class="s">"calm"</span>))
+	fsm.calm(); <span class="c">// will never happen - can only calm() from red</span>
+
+fsm.panic(); <span class="c">// fsm.current === "red"</span>
+fsm.warn();  <span class="c">// throws exception! only allowed from green</span>
+</code></pre>
 
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
@@ -141,8 +149,9 @@
 					warn:  { from: "green",        to: "yellow" },
 					panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 					calm:  { from: "red",          to: "yellow" },
-					clear: { from: "*",            to: "green"  } // "*" allows all states
-			}});
+					clear: { from: "*",            to: "green"  } // can be called from all states
+				}
+			});
 
 			var last_state = fsm.current;
 

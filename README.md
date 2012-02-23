@@ -20,10 +20,10 @@ Example borrowed from [Jake Gordon](https://github.com/jakesgordon/javascript-st
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 			calm:  { from: "red",          to: "yellow" },
-			clear: { from: "*",            to: "green"  } // "*" allows all states
+			clear: { from: "*",            to: "green"  } // can be called from all states
 	}});
 
-...will create an object with the following members:
+Now we have a simple state machine object with the following members:
 
 * `fsm.warn()`, `fsm.panic()`, `fsm.calm()`, and `fsm.clear()`
   - Transitions the current state to another color.
@@ -33,4 +33,11 @@ Example borrowed from [Jake Gordon](https://github.com/jakesgordon/javascript-st
 * `fsm.can(event)`
   - Returns `true` if the `event` is allowed, else `false`.
 
+The methods may be used as follows.
 
+	// fsm.current === "green"
+	if (fsm.can("calm"))
+		fsm.calm(); // will never happen - can only calm() from red
+
+	fsm.panic(); // fsm.current === "red"
+	fsm.warn();  // throws exception! only allowed from green
