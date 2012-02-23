@@ -126,14 +126,6 @@
 		clear: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
 }});</code></pre>
 
-<pre><code><span class="c">// fsm.current === "green"</span>
-<span class="k">if</span> (fsm.can(<span class="s">"calm"</span>))
-	fsm.calm(); <span class="c">// will never happen - can only calm() from red</span>
-
-fsm.panic(); <span class="c">// fsm.current === "red"</span>
-fsm.warn();  <span class="c">// throws exception! only allowed from green</span>
-</code></pre>
-
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
 			<li>No license, this code is in the public domain. I do however appreciate attribution.</li>
