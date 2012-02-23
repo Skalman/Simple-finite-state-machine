@@ -5,7 +5,7 @@
 
 function Simple_state_machine(options) {
 	"use strict";
-	var i, event, from,
+	var i, event,
 		events = options.events,
 
 		// variables in closure
