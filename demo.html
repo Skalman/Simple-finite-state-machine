@@ -15,12 +15,20 @@
 				cursor:pointer;
 				padding:0.2em;
 			}
-			pre {
+			pre, code {
+				padding:0.5em;
+				border:1px solid #ddd;
 				-moz-tab-size:4;
 				  -o-tab-size:4;
 				     tab-size:4;
 				white-space:pre-wrap;
+				background-color:#f9f9f9;
+				border-radius:0.2em;
 			}
+			code {
+				margin:0 0.1em; padding:0.1em 0.3em;
+			}
+			pre code { margin:0; padding:0; border:none; }
 			label:hover { background-color:#cef; }
 			#demo-interact { text-align:center; }
 			#states { margin:2em 0 5em 0; }
