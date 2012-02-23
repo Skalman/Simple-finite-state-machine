@@ -118,13 +118,13 @@
 		</div>
 
 <pre><code><span class="k">var</span> fsm = <span class="k">new</span> Simple_state_machine({
-	initial: <span class="s">"green"</span>, <span class="c">// undefined if omitted</span>
-	events: [
-		{ name: <span class="s">"warn"</span>,  from: <span class="s">"green"</span>,             to: <span class="s">"yellow"</span> },
-		{ name: <span class="s">"panic"</span>, from: [<span class="s">"green"</span>, <span class="s">"yellow"</span>], to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
-		{ name: <span class="s">"calm"</span>,  from: <span class="s">"red"</span>,               to: <span class="s">"yellow"</span> },
-		{ name: <span class="s">"clear"</span>, from: <span class="s">"*"</span>,                 to: <span class="s">"green"</span>  } <span class="c">// "*" allows all states</span>
-]});</code></pre>
+	initial: <span class="s">"green"</span>, <span class="c">// "none" if omitted</span>
+	events: {
+		warn:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
+		panic: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
+		calm:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
+		clear: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// "*" allows all states</span>
+}});</code></pre>
 
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
@@ -136,13 +136,13 @@
 			function id(id) { return document.getElementById(id) }
 
 			var fsm = new Simple_state_machine({
-				initial: "green", // undefined if omitted
-				events: [
-					{ name: "warn",  from: "green",             to: "yellow" },
-					{ name: "panic", from: ["green", "yellow"], to: "red"    }, // allow to be called from multiple states
-					{ name: "calm",  from: "red",               to: "yellow" },
-					{ name: "clear", from: "*",                 to: "green"  } // "*" allows all states
-			]});
+				initial: "green", // "none" if omitted
+				events: {
+					warn:  { from: "green",        to: "yellow" },
+					panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
+					calm:  { from: "red",          to: "yellow" },
+					clear: { from: "*",            to: "green"  } // "*" allows all states
+			}});
 
 			var last_state = fsm.current;
 

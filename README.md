@@ -15,19 +15,19 @@ Usage
 Example borrowed from [Jake Gordon](https://github.com/jakesgordon/javascript-state-machine). Let's create a state machine with a few states and events.
 
 	var fsm = new Simple_state_machine({
-		initial: "green", // undefined if omitted
-		events: [
-			{ name: "warn",  from: "green",             to: "yellow" },
-			{ name: "panic", from: ["green", "yellow"], to: "red"    }, // allow to be called from multiple states
-			{ name: "calm",  from: "red",               to: "yellow" },
-			{ name: "clear", from: "*",                 to: "green"  } // "*" allows all states
-	]});
+		initial: "green", // "none" if omitted
+		events: {
+			warn:  { from: "green",        to: "yellow" },
+			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
+			calm:  { from: "red",          to: "yellow" },
+			clear: { from: "*",            to: "green"  } // "*" allows all states
+	}});
 
 ...will create an object with the following members:
 
 * `fsm.warn()`, `fsm.panic()`, `fsm.calm()`, and `fsm.clear()`
   - Transitions the current state to another color.
-  - Each method will throw an exception if the event is not allowed.
+  - Each method will `throw` an exception if the event is not allowed.
 * `fsm.current`
   - The current state, initially `green`.
 * `fsm.can(event)`

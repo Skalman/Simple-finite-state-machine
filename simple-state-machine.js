@@ -3,41 +3,32 @@
  * No license, this code is in the public domain. I do however appreciate attribution.
  */
 
-function Simple_state_machine(config) {
+function Simple_state_machine(options) {
 	"use strict";
-	var i, j, event, old_from, new_from,
-		events = config.events,
+	var i, event, from,
+		events = options.events,
 
 		// variables in closure
 		that = this;
 
 	// public
-	that.current = config.initial;
+	that.current = options.initial || "none";
 
-	function event_function(name, from, to) {
+	function event_function(event, from, to) {
 		var f = function () {
-			if (that.can(name)) {
+			if (that.can(event)) {
 				that.current = to;
 			} else {
-				throw "Cannot '" + name + "()'";
+				throw "Cannot '" + event + "()'";
 			}
 		};
-		f.from = from;
+		f.from = from; // private
 		return f;
 	}
 
-	for (i = 0; i < events.length; i++) {
+	for (i in events) {
 		event = events[i];
-		// prepare from
-		old_from = event.from;
-		if (typeof old_from !== "string") {
-			new_from = {};
-			for (j = 0; j < old_from.length; j++) {
-				new_from[old_from[j]] = true;
-			}
-			event.from = new_from;
-		}
-		that[event.name] = event_function(event.name, event.from, event.to);
+		that[i] = event_function(i, " " + event.from + " ", event.to);
 	}
 }
 
@@ -46,6 +37,10 @@ function Simple_state_machine(config) {
 Simple_state_machine.prototype.can = function Simple_state_machine_can(event) {
 	"use strict";
 	var from = this[event] && this[event].from,
-		current = this.current;
-	return from === current || from === "*" || (typeof from === "object" && current in from);
+		current = " " + this.current + " ";
+	if (from) {
+		return from === " * " || from.indexOf(current) !== -1;
+	} else {
+		return false;
+	}
 };
