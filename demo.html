@@ -137,7 +137,6 @@
 		<script src="simple-state-machine.js"></script>
 		<script>
 			function id(id) { return document.getElementById(id) }
-			function cl(cl) { return document.getElementsByClassName('')}
 
 			var fsm = new Simple_state_machine({
 				initial: "green", // undefined if omitted
@@ -162,6 +161,7 @@
 
 				id("current").innerHTML = fsm.current;
 			}
+
 			function event() {
 				var new_state,
 					old_state = fsm.current,
@@ -170,7 +170,6 @@
 				new_state = fsm.current;
 
 				update();
-
 			}
 
 			id("warn").onclick =
