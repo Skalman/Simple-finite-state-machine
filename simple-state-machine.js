@@ -36,10 +36,9 @@ function Simple_state_machine(options) {
 
 Simple_state_machine.prototype.can = function Simple_state_machine_can(event) {
 	"use strict";
-	var from = this[event] && this[event].from,
-		current = " " + this.current + " ";
+	var from = this[event] && this[event].from;
 	if (from) {
-		return from === " * " || from.indexOf(current) !== -1;
+		return from === " * " || from.indexOf(" " + this.current + " ") !== -1;
 	} else {
 		return false;
 	}
