@@ -74,7 +74,7 @@
 			return "hsl(" + (hash % 360) + ", 100%, 80%)";
 		},
 		state: function (state) {
-			if (!this.states[state]) {
+			if (!this.states[state] && !state.match(/[^0-9a-z_-]/i)) {
 				this.states[state] = ".state-" + state + " > span { background-color:" + this.color(state) + " }";
 			}
 		},
