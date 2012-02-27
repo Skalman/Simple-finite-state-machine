@@ -9,16 +9,16 @@ function Simple_state_machine(options) {
 		events = options.events,
 
 		// variables in closure
-		that = this;
+		self = this;
 
 	// public
-	that.options = options; // for inspection at a later point
-	that.current = options.initial || "none";
+	self.options = options; // for inspection at a later point
+	self.current = options.initial || "none";
 
 	function event_function(event, from, to) {
 		var f = function () {
-			if (that.can(event)) {
-				that.current = to;
+			if (self.can(event)) {
+				self.current = to;
 			} else {
 				throw "Cannot '" + event + "()'";
 			}
@@ -29,7 +29,7 @@ function Simple_state_machine(options) {
 
 	for (i in events) {
 		event = events[i];
-		that[i] = event_function(i, " " + event.from + " ", event.to);
+		self[i] = event_function(i, " " + event.from + " ", event.to);
 	}
 }
 
