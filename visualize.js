@@ -195,7 +195,7 @@
 		});
 		visualize(fsm);
 	}
-	id("visualize").onclick = refresh;
+	id("visualize-button").onclick = refresh;
 
 	refresh();
 })(this);

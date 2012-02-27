@@ -22,7 +22,7 @@ clear: { from: "*",            to: "green"  } // can be called from all states
 </textarea>
 			</div>
 
-			<pre><code>}});</code> <button id="visualize" type="button">Visualize!</button></pre>
+			<pre><code>}});</code> <button id="visualize-button" type="button">Visualize!</button></pre>
 		</form>
 
 		<div id="visualization">
@@ -36,34 +36,36 @@ clear: { from: "*",            to: "green"  } // can be called from all states
 			</table>
 		</div>
 
-		<script type="text/tpl" id="tpl-row-single-to">
-			<tr>
-				<td class="event_groups">{event_groups}</td>
-				<td class="to"><div class="to_i state-{to}"><span>{to}</span></div></td>
-			</tr>
-		</script>
-		<script type="text/tpl" id="tpl-row-single-from">
-			<tr>
-				<td class="from"><div class="from_i state-{from}"><span>{from}</span></div></td>
-				<td class="event">{events}</td>
-				<td class="to">{tos}</td>
-			</tr>
-		</script>
-		<script type="text/tpl" id="tpl-event-group">
-			<table class="event_group"><tr>
-				<td class="from">{froms}</td>
-				<td class="event"><div class="event_i event-{event}"><span>{event}()</span></div></td>
-			</tr></table>
-		</script>
-		<script type="text/tpl" id="tpl-from">
-			<div class="from_i state-{from}"><span>{from}</span></div>
-		</script>
-		<script type="text/tpl" id="tpl-event">
-			<div class="event_i event-{event}"><span>{event}()</span></div>
-		</script>
-		<script type="text/tpl" id="tpl-to">
-			<div class="to_i state-{to}"><span>{to}</span></div>
-		</script>
+		<div id="templates">
+			<script type="text/tpl" id="tpl-row-single-to">
+				<tr>
+					<td class="event_groups">{event_groups}</td>
+					<td class="to"><div class="to_i state-{to}"><span>{to}</span></div></td>
+				</tr>
+			</script>
+			<script type="text/tpl" id="tpl-row-single-from">
+				<tr>
+					<td class="from"><div class="from_i state-{from}"><span>{from}</span></div></td>
+					<td class="event">{events}</td>
+					<td class="to">{tos}</td>
+				</tr>
+			</script>
+			<script type="text/tpl" id="tpl-event-group">
+				<table class="event_group"><tr>
+					<td class="from">{froms}</td>
+					<td class="event"><div class="event_i event-{event}"><span>{event}()</span></div></td>
+				</tr></table>
+			</script>
+			<script type="text/tpl" id="tpl-from">
+				<div class="from_i state-{from}"><span>{from}</span></div>
+			</script>
+			<script type="text/tpl" id="tpl-event">
+				<div class="event_i event-{event}"><span>{event}()</span></div>
+			</script>
+			<script type="text/tpl" id="tpl-to">
+				<div class="to_i state-{to}"><span>{to}</span></div>
+			</script>
+		</div>
 
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
