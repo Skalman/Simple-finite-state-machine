@@ -168,9 +168,10 @@ footer {
 			position:relative; top:1.1em;
 			padding:0.1em 0.3em;
 			border:1px solid #666;
-			border-color:rgba(0, 0, 0, 0.3);
+			border-color:rgba(0, 0, 0, 0.5);
 			background:#fff;
 		}
+		.event_i > span { border:none; padding:0.1em 0.2em; }
 #code_input {
 	white-space:normal;
 	overflow:hidden;
