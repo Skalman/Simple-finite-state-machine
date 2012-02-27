@@ -3,81 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Simple finite state machine demo (JavaScript)</title>
-		<style>
-			body {
-				margin:1em 3em;
-				font:100%/1.5 Arial, sans-serif;
-			}
-
-			h1 { font-size:1em; text-align:center; }
-				h1 small { font-weight:normal; }
-
-			label {
-				display:block;
-				cursor:pointer;
-				padding:0.2em;
-				border-left:0.5em solid transparent;
-			}
-				label:hover { background-color:#cef; }
-				label[for="warn"], label[for="calm"] { border-color:#ff9; }
-				label[for="panic"] { border-color:#faa; }
-				label[for="clear"] { border-color:#afa; }
-
-			pre, code {
-				padding:0.5em;
-				border:1px solid #ddd;
-				-moz-tab-size:4;
-				  -o-tab-size:4;
-				     tab-size:4;
-				white-space:pre-wrap;
-				background-color:#f9f9f9;
-				border-radius:0.2em;
-			}
-			code { margin:0 0.1em; padding:0.1em 0.3em; }
-				pre code { margin:0; padding:0; border:none; }
-
-			#demo-interact { text-align:center; }
-
-			#states { margin:2em 0 5em 0; }
-				#states > li {
-					position:relative;
-					display:inline-block;
-					margin:0 3em; padding:1em;
-					border:0.2em solid #999;
-					border-color:rgba(255, 255, 255, 0.5);
-					border-radius:0.2em;
-					box-shadow:0 0.2em 0.5em #999;
-				}
-				#states > li.current { border-color:#000; box-shadow:0 0.2em 0.5em #000; }
-					#states ul {
-						display:none;
-						position:absolute; left:0; top:3.5em;
-						margin:0; padding:0;
-						border:1px solid #000;
-						list-style:none;
-						background-color:#fff;
-					}
-					#states > li.current > ul { display:block; }
-						#states ul > li { font-size:0.8em; }
-
-			#green { background-color:#3f3; }
-			#yellow { background-color:#fd3; }
-			#red { background-color:#f33; }
-
-			footer {
-				margin-top:3em;
-				color:#666;
-				font-size:0.8em;
-			}
-				footer ul { margin:0; padding:0; }
-					footer li { display:inline; }
-					footer li:first-child::after { content:" • ";}
-
-			/* code: keywords, strings and comments */
-			.k { font-weight:bold; }
-			.s { color:#c00; }
-			.c { color:#090; }
-		</style>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<h1>Simple finite state machine demo <small>(<a href="simple-state-machine.js">source</a>, <a href="simple-state-machine.min.js">minified</a>, <a href="README.md">readme</a>)</small></h1>
@@ -89,7 +15,7 @@
 				<button id="calm">calm()</button>
 				<button id="clear">clear()</button>
 			</p>
-			<p><code>fsm.current === <span class="s">"<span id="current"></span>"</span></code></p>
+			<p><code>fsm.<span class="m">current</span> === <span class="s">"<span id="current"></span>"</span></code></p>
 
 			<ul id="states">
 				<li id="green">
@@ -117,13 +43,13 @@
 			</ul>
 		</div>
 
-<pre><code><span class="k">var</span> fsm = <span class="k">new</span> Simple_state_machine({
-	initial: <span class="s">"green"</span>, <span class="c">// "none" if omitted</span>
-	events: {
-		warn:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
-		panic: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
-		calm:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-		clear: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
+<pre><code>var fsm = new <span class="k">Simple_state_machine</span>({
+	<span class="m">initial</span>: <span class="s">"green"</span>, <span class="c">// "none" if omitted</span>
+	<span class="m">events</span>: {
+		<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
+		<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
+		<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
+		<span class="m">clear</span>: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
 }});</code></pre>
 
 		<footer><ul>
@@ -132,50 +58,6 @@
 		</ul></footer>
 
 		<script src="simple-state-machine.js"></script>
-		<script>
-			function id(id) { return document.getElementById(id) }
-
-			var fsm = new Simple_state_machine({
-				initial: "green", // "none" if omitted
-				events: {
-					warn:  { from: "green",        to: "yellow" },
-					panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
-					calm:  { from: "red",          to: "yellow" },
-					clear: { from: "*",            to: "green"  } // can be called from all states
-				}
-			});
-
-			var last_state = fsm.current;
-
-			function update() {
-				id(last_state).className = "";
-				last_state = fsm.current;
-				id(fsm.current).className = "current";
-
-				id("warn").disabled =  !fsm.can("warn");
-				id("panic").disabled = !fsm.can("panic");
-				id("calm").disabled =  !fsm.can("calm");
-				id("clear").disabled = !fsm.can("clear");
-
-				id("current").innerHTML = fsm.current;
-			}
-
-			function event() {
-				var new_state,
-					old_state = fsm.current,
-					event = this.id;
-				fsm[event]();
-				new_state = fsm.current;
-
-				update();
-			}
-
-			id("warn").onclick =
-			id("panic").onclick =
-			id("calm").onclick =
-			id("clear").onclick = event;
-
-			update();
-		</script>
+		<script src="demo.js"></script>
 	</body>
 </html>
