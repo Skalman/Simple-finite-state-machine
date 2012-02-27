@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<title>Simple finite state machine visualizer (JavaScript)</title>
+		<link rel="stylesheet" href="style.css" />
+		<style id="state-styles"></style>
+	</head>
+	<body>
+
+		<h1>Simple finite state machine visualizer <small>(<a href="demo.html">demo</a>, <a href="simple-state-machine.js">source</a>, <a href="simple-state-machine.min.js">minified</a>, <a href="README.md">readme</a>)</small></h1>
+
+		<form id="code_input">
+
+			<pre><code><span class="k">var</span> fsm = new <span class="k">Simple_state_machine</span>({
+	<span class="m">events</span>: {</code></pre>
+			<div class="indent">
+				<textarea id="code">warn:  { from: "green",        to: "yellow" },
+panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
+calm:  { from: "red",          to: "yellow" },
+clear: { from: "*",            to: "green"  } // can be called from all states
+</textarea>
+			</div>
+
+			<pre><code>}});</code> <button id="visualize" type="button">Visualize!</button></pre>
+		</form>
+
+		<div id="visualization">
+			<table id="single_from">
+				<caption>Grouped by from state <small>(<a href="" class="js" id="group_by_to_state">switch</a>)</small></caption>
+				<tbody id="single_from_content"></tbody>
+			</table>
+			<table id="single_to">
+				<caption>Grouped by to state <small>(<a href="" class="js" id="group_by_from_state">switch</a>)</small></caption>
+				<tbody id="single_to_content"></tbody>
+			</table>
+		</div>
+
+		<script type="text/tpl" id="tpl-row-single-to">
+			<tr>
+				<td class="event_groups">{event_groups}</td>
+				<td class="to"><div class="to_i state-{to}"><span>{to}</span></div></td>
+			</tr>
+		</script>
+		<script type="text/tpl" id="tpl-row-single-from">
+			<tr>
+				<td class="from"><div class="from_i state-{from}"><span>{from}</span></div></td>
+				<td class="event">{events}</td>
+				<td class="to">{tos}</td>
+			</tr>
+		</script>
+		<script type="text/tpl" id="tpl-event-group">
+			<table class="event_group"><tr>
+				<td class="from">{froms}</td>
+				<td class="event"><div class="event_i event-{event}"><span>{event}()</span></div></td>
+			</tr></table>
+		</script>
+		<script type="text/tpl" id="tpl-from">
+			<div class="from_i state-{from}"><span>{from}</span></div>
+		</script>
+		<script type="text/tpl" id="tpl-event">
+			<div class="event_i event-{event}"><span>{event}()</span></div>
+		</script>
+		<script type="text/tpl" id="tpl-to">
+			<div class="to_i state-{to}"><span>{to}</span></div>
+		</script>
+
+		<footer><ul>
+			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
+			<li>No license, this code is in the public domain. I do however appreciate attribution.</li>
+		</ul></footer>
+
+		<script src="simple-state-machine.js"></script>
+		<script src="visualize.js"></script>
+	</body>
+</html>
