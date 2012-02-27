@@ -28,10 +28,12 @@ Now we have a simple state machine object with the following members:
 * `fsm.warn()`, `fsm.panic()`, `fsm.calm()`, and `fsm.clear()`
   - Transitions the current state to another color.
   - Each method will `throw` an exception if the event is not allowed.
-* `fsm.current`
-  - The current state, initially `green`.
 * `fsm.can(event)`
   - Returns `true` if the `event` is allowed, else `false`.
+* `fsm.current`
+  - The current state, initially `green`.
+* `fsm.options`
+  - The parameters options object which was used to create the state machine. Note that changing this object doesn't affect the machine's behavior.
 
 The methods may be used as follows.
 

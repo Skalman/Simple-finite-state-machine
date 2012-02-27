@@ -12,6 +12,7 @@ function Simple_state_machine(options) {
 		that = this;
 
 	// public
+	that.options = options; // for inspection at a later point
 	that.current = options.initial || "none";
 
 	function event_function(event, from, to) {
