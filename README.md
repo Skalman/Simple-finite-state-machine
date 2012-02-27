@@ -6,7 +6,7 @@ It is lightweight, standalone. Less than 0.5 kB.
 
 The code has *no license*, it's in the public domain. I do however appreciate attribution.
 
-Check out the [demo](http://wlff.se/simple-state-machine/) (also available at `demo.html`).
+Check out the [demo](http://wlff.se/simple-state-machine/) (also available at `demo/index.html`).
 
 
 Usage
