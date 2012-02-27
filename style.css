@@ -1,11 +1,11 @@
 /* common */
 
 body {
-	padding:2em 3em 4.5em 3em;
+	padding:0em 3em 4.5em 3em;
 	font:100%/1.5 Arial, sans-serif;
 }
 
-h1 { font-size:1em; text-align:center; }
+h1 { font-size:1.5em; text-align:center; }
 	h1 small { font-weight:normal; }
 
 a.js, a:link { color:#00c; }
@@ -68,7 +68,7 @@ pre, code, .indent { font-family:monospace; }
 footer {
 	position:fixed; left:0; bottom:0;
 	width:100%;
-	padding:1em 0;
+	padding:0.1em 0;
 	border-top:1px solid #ccc;
 	box-shadow:0 0 0.5em #eee;
 	color:#666; background:#fff;
