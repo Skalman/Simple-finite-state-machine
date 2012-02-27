@@ -1,7 +1,7 @@
 /* common */
 
 body {
-	margin:2em 3em;
+	padding:2em 3em 4.5em 3em;
 	font:100%/1.5 Arial, sans-serif;
 }
 
@@ -69,6 +69,8 @@ footer {
 	position:fixed; left:0; bottom:0;
 	width:100%;
 	padding:1em 0;
+	border-top:1px solid #ccc;
+	box-shadow:0 0 0.5em #eee;
 	color:#666; background:#fff;
 }
 	footer ul { margin:0 3em; padding:0; }
