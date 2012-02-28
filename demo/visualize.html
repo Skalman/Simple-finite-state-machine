@@ -8,21 +8,21 @@
 	</head>
 	<body>
 
-		<h1>Simple finite state machine visualizer <small>(<a href="index.html">demo</a>, <a href="../simple-state-machine.js">source</a>, <a href="../simple-state-machine.min.js">minified</a>, <a href="../README.md">readme</a>)</small></h1>
+		<h1>Simple finite state machine visualizer, <i>minimal edition</i> <small>(<a href="index.html">demo</a>, <a href="../simple-state-machine.js">source</a>, <a href="../simple-state-machine.min.js">minified</a>, <a href="../README.md">readme</a>)</small></h1>
 
 		<form id="code_input">
 
-			<pre><code><span class="k">var</span> fsm = new <span class="k">Simple_state_machine</span>({
-	<span class="m">events</span>: {</code></pre>
+			<pre><code><span class="c">// new Fsm(initial_state, events)</span>
+var fsm = new <span class="k">Fsm</span>(<span class="s">"green"</span>, {</code></pre>
 			<div class="indent">
 				<textarea id="code">warn:  { from: "green",        to: "yellow" },
 panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 calm:  { from: "red",          to: "yellow" },
-clear: { from: "*",            to: "green"  } // can be called from all states
+clear: { from: "yellow red",   to: "green"  } // can be called from all states
 </textarea>
 			</div>
 
-			<pre><code>}});</code> <button id="visualize-button" type="button">Visualize!</button></pre>
+			<pre><code>});</code> <button id="visualize-button" type="button">Visualize!</button></pre>
 		</form>
 
 		<div id="visualization">

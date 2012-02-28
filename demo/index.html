@@ -2,11 +2,11 @@
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8" />
-		<title>Simple finite state machine demo (JavaScript)</title>
+		<title>Simple finite state machine demo, minimal edition (JavaScript)</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Simple finite state machine demo <small>(<a href="visualize.html">visualize</a>, <a href="../simple-state-machine.js">source</a>, <a href="../simple-state-machine.min.js">minified</a>, <a href="../README.md">readme</a>)</small></h1>
+		<h1>Simple finite state machine, <i>minimal edition</i> demo <small>(<a href="visualize.html">visualize</a>, <a href="../simple-state-machine.js">source</a>, <a href="../simple-state-machine.min.js">minified</a>, <a href="../README.md">readme</a>)</small></h1>
 		<ap class="subtitle"></ap>
 
 		<div id="demo-interact">
@@ -16,13 +16,12 @@
 				<button id="calm">calm()</button>
 				<button id="clear">clear()</button>
 			</p>
-			<p><code>fsm.<span class="m">current</span> === <span class="s">"<span id="current"></span>"</span></code></p>
+			<p id="status">We initially set the current state to <code>"green"</code></p>
 
 			<ul id="states">
 				<li id="green">
 					Green
 					<ul>
-						<li><label for="clear">clear()</label></li>
 						<li><label for="warn">warn()</label></li>
 						<li><label for="panic">panic()</label></li>
 					</ul>
@@ -44,13 +43,12 @@
 			</ul>
 		</div>
 
-<pre><code>var fsm = new <span class="k">Simple_state_machine</span>({
-	<span class="m">initial</span>: <span class="s">"green"</span>, <span class="c">// "none" if omitted</span>
-	<span class="m">events</span>: {
-		<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
-		<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
-		<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-		<span class="m">clear</span>: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
+<pre><code><span class="c">// new Fsm(initial_state, events)</span>
+var fsm = new <span class="k">Fsm</span>(<span class="s">"green"</span>, {
+	<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
+	<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
+	<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
+	<span class="m">clear</span>: { from: <span class="s">"yellow red"</span>,   to: <span class="s">"green"</span>  }
 }});</code></pre>
 
 		<footer><ul>

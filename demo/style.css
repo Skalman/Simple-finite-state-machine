@@ -37,6 +37,8 @@ code { margin:0 0.1em; padding:0.1em 0.3em; }
 	pre code { margin:0; padding:0; border:none; }
 pre, code, .indent { font-family:monospace; }
 
+.error { color:#c00; }
+
 #demo-interact { text-align:center; }
 
 #states { margin:2em 0 5em 0; }

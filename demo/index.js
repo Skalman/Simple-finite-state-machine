@@ -6,34 +6,35 @@
 		return window.document.getElementById(i);
 	}
 
-	var fsm = new window.Simple_state_machine({
-		initial: "green", // "none" if omitted
-		events: {
+	var old_state = "green",
+		events = {
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 			calm:  { from: "red",          to: "yellow" },
-			clear: { from: "*",            to: "green"  } // can be called from all states
-		}
-	});
+			clear: { from: "yellow red",   to: "green"  }
+		},
+		fsm = new window.Fsm("green", events);
 
 	function update(new_state, old_state) {
 		if (old_state) {
 			id(old_state).className = "";
 		}
 		id(new_state).className = "current";
-
-		id("warn").disabled =  !fsm.warn.can();
-		id("panic").disabled = !fsm.panic.can();
-		id("calm").disabled =  !fsm.calm.can();
-		id("clear").disabled = !fsm.clear.can();
-
-		id("current").innerHTML = fsm.current;
 	}
 
 	function event() {
-		var old_state = fsm.current;
-		fsm[this.id]();
-		update(fsm.current, old_state);
+		var new_state;
+		try {
+			fsm[this.id]();
+			new_state = events[this.id].to;
+			id("status").innerHTML = "After a <code>" + this.id + "()</code>, we should be in <code>" + new_state + "</code>";
+			id("status").className = "";
+			update(new_state, old_state);
+			old_state = new_state;
+		} catch (e) {
+			id("status").innerHTML = "Exception thrown! It seems like you can't <code>" + this.id + "()</code>";
+			id("status").className = "error";
+		}
 	}
 
 	id("warn").onclick =
@@ -41,5 +42,5 @@
 	id("calm").onclick =
 	id("clear").onclick = event;
 
-	update(fsm.current);
+	update(old_state);
 })(this);

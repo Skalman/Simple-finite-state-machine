@@ -86,7 +86,7 @@
 			return lines.join("\n");
 		}
 	};
-	function visualize(fsm) {
+	function visualize(fsm, events) {
 		/*
 			from = {
 				from: { event: to, event: to },
@@ -112,7 +112,6 @@
 		var i, j, tmp_from, tmp_froms, tmp_event, tmp_events, tmp_to, tmp_tos,
 			from = {},
 			to = {},
-			events = fsm.options.events,
 			colors = new Color();
 
 		for (i in events) {
@@ -190,10 +189,8 @@
 			window.alert(e);
 			return;
 		}
-		fsm = new window.Simple_state_machine({
-			events: events
-		});
-		visualize(fsm);
+		fsm = new window.Fsm("green", events);
+		visualize(fsm, events);
 	}
 	id("visualize-button").onclick = refresh;
 
