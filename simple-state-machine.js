@@ -5,7 +5,7 @@
 
 function Simple_state_machine(options) {
 	"use strict";
-	var i, event,
+	var i,
 		events = options.events,
 
 		// variables in closure
@@ -15,21 +15,18 @@ function Simple_state_machine(options) {
 	self.options = options; // for inspection at a later point
 	self.current = options.initial || "none";
 
-	function event_function(event, from, to) {
-		var f = function () {
-			if (self.can(event)) {
-				self.current = to;
-			} else {
-				throw "Cannot '" + event + "()'";
-			}
-		};
-		f.from = from; // private
-		return f;
-	}
-
 	for (i in events) {
-		event = events[i];
-		self[i] = event_function(i, " " + event.from + " ", event.to);
+		self[i] = (function (event, from, to) {
+			var f = function () {
+				if (!self.can(event)) {
+					throw "Cannot '" + event + "()'";
+				}
+				// else
+				self.current = to;
+			};
+			f.from = from; // private
+			return f;
+		})(i, " " + events[i].from + " ", events[i].to);
 	}
 }
 
