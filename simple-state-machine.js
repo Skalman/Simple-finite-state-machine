@@ -17,27 +17,17 @@ function Simple_state_machine(options) {
 
 	for (i in events) {
 		self[i] = (function (event, from, to) {
-			var f = function () {
-				if (!self.can(event)) {
+			function event_function() {
+				if (!event_function.can(event)) {
 					throw "Cannot '" + event + "()'";
 				}
 				// else
 				self.current = to;
+			}
+			event_function.can = function () {
+				return from === " * " || from.indexOf(" " + self.current + " ") !== -1;
 			};
-			f.from = from; // private
-			return f;
+			return event_function;
 		})(i, " " + events[i].from + " ", events[i].to);
 	}
 }
-
-// Simple_state_machine.prototype.current is set in constructor
-
-Simple_state_machine.prototype.can = function Simple_state_machine_can(event) {
-	"use strict";
-	var from = this[event] && this[event].from;
-	if (from) {
-		return from === " * " || from.indexOf(" " + this.current + " ") !== -1;
-	} else {
-		return false;
-	}
-};

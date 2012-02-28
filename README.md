@@ -28,8 +28,8 @@ Now we have a simple state machine object with the following members:
 * `fsm.warn()`, `fsm.panic()`, `fsm.calm()`, and `fsm.clear()`
   - Transitions the current state to another color.
   - Each method will `throw` an exception if the event is not allowed.
-* `fsm.can(event)`
-  - Returns `true` if the `event` is allowed, else `false`.
+* `fsm.warn.can()`, `fsm.panic.can()`, `fsm.calm.can()`, `fsm.clear.can()`
+  - Returns `true` if the `<event>` is allowed, else `false`.
 * `fsm.current`
   - The current state, initially `green`.
 * `fsm.options`
@@ -38,7 +38,7 @@ Now we have a simple state machine object with the following members:
 The methods may be used as follows.
 
 	// fsm.current === "green"
-	if (fsm.can("calm"))
+	if (fsm.calm.can())
 		fsm.calm(); // will never happen - can only calm() from red
 
 	fsm.panic(); // fsm.current === "red"

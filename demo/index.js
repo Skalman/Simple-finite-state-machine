@@ -22,10 +22,10 @@
 		}
 		id(new_state).className = "current";
 
-		id("warn").disabled =  !fsm.can("warn");
-		id("panic").disabled = !fsm.can("panic");
-		id("calm").disabled =  !fsm.can("calm");
-		id("clear").disabled = !fsm.can("clear");
+		id("warn").disabled =  !fsm.warn.can();
+		id("panic").disabled = !fsm.panic.can();
+		id("calm").disabled =  !fsm.calm.can();
+		id("clear").disabled = !fsm.clear.can();
 
 		id("current").innerHTML = fsm.current;
 	}
