@@ -8,11 +8,11 @@ function Fsm(current_state, events) {
 	for (var i in events) {
 		this[i] = (function (from, to) {
 			return function () {
-				if (from.indexOf(" " + current_state + " ") === -1) {
+				if (from.indexOf(current_state) === -1) {
 					throw from;
 				}
 				current_state = to;
 			};
-		})(" " + events[i].from + " ", events[i].to);
+		})(events[i].from.split(" "), events[i].to);
 	}
 }
