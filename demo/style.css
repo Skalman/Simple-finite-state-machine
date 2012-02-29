@@ -128,7 +128,7 @@ footer {
 	position:relative;
 	line-height:2;
 }
-#single_from { display:none; }
+#single_to { display:none; }
 .from, .event, .to, .event_groups {
 	vertical-align:middle;
 	padding-bottom:2em;
