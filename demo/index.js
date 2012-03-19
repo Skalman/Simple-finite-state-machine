@@ -25,14 +25,14 @@
 	function event() {
 		var new_state;
 		try {
-			fsm[this.id]();
+			fsm(this.id);
 			new_state = events[this.id].to;
-			id("status").innerHTML = "After a <code>" + this.id + "()</code>, we should be in <code>" + new_state + "</code>";
+			id("status").innerHTML = 'After a <code>fsm(<span class="s">"' + this.id + '"</span>)</code>, we should be in <code>' + new_state + '</code>';
 			id("status").className = "";
 			update(new_state, old_state);
 			old_state = new_state;
 		} catch (e) {
-			id("status").innerHTML = "Exception thrown! It seems like you can't <code>" + this.id + "()</code>";
+			id("status").innerHTML = 'Exception thrown! It seems like you can\'t <code>fsm(<span class="s">"' + this.id + '"</span>)</code>';
 			id("status").className = "error";
 		}
 	}

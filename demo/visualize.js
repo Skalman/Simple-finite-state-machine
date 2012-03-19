@@ -118,7 +118,11 @@
 			tmp_from = events[i].from.split(" ");
 			tmp_to = events[i].to;
 
-			colors.state(tmp_to);
+			if (tmp_to) {
+				colors.state(tmp_to);
+			} else {
+				tmp_to = "<i>no change</i>";
+			}
 
 			// populate from
 			for (j in tmp_from) {
@@ -189,7 +193,7 @@
 			window.alert(e);
 			return;
 		}
-		fsm = new window.Fsm("green", events);
+		fsm = window.Fsm(events);
 		visualize(fsm, events);
 	}
 	id("visualize-button").onclick = refresh;
