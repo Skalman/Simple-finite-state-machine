@@ -1,7 +1,7 @@
 Simple state machine, *minimal modern edition*
 ==============================================
 
-A finite state machine, stripped to the bare minimal. The minified version weighs about 100 bytes.
+A finite state machine, stripped to the bare minimal. The minified version weighs less than 100 bytes.
 
 It strips a few more bytes than the standard minimal edition by requiring `Array.prototype.indexOf()` (not supported in IE 8 and below).
 
