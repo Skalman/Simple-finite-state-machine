@@ -5,14 +5,11 @@
 
 function Fsm(current_state, events) {
 	"use strict";
-	for (var i in events) {
-		this[i] = (function (from, to) {
-			return function () {
-				if (from.indexOf(current_state) === -1) {
-					throw from;
-				}
-				current_state = to;
-			};
-		})(events[i].from.split(" "), events[i].to);
-	}
+	return function (event) {
+		// a TypeError will be thrown if the event doesn't exist
+		if (events[event].from.split(" ").indexOf(current_state) == -1) {
+			throw event;
+		}
+		current_state = events[event].to;
+	};
 }

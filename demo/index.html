@@ -7,49 +7,47 @@
 	</head>
 	<body>
 		<h1>Simple finite state machine, <i>minimal modern edition</i> demo <small>(<a href="visualize.html">visualize</a>, <a href="../simple-state-machine.js">source</a>, <a href="../simple-state-machine.min.js">minified</a>, <a href="../README.md">readme</a>)</small></h1>
-		<ap class="subtitle"></ap>
-
 		<div id="demo-interact">
 			<p>
-				<button id="warn">warn()</button>
-				<button id="panic">panic()</button>
-				<button id="calm">calm()</button>
-				<button id="clear">clear()</button>
+				<button id="warn">fsm(<span class="s">"warn"</span>)</button>
+				<button id="panic">fsm(<span class="s">"panic"</span>)</button>
+				<button id="calm">fsm(<span class="s">"calm"</span>)</button>
+				<button id="clear">fsm(<span class="s">"clear"</span>)</button>
 			</p>
-			<p id="status">We initially set the current state to <code>"green"</code></p>
+			<p id="status">We initially set the current state to <code class="s">"green"</code></p>
 
 			<ul id="states">
 				<li id="green">
 					Green
 					<ul>
-						<li><label for="warn">warn()</label></li>
-						<li><label for="panic">panic()</label></li>
+						<li><label for="warn">fsm("warn")</label></li>
+						<li><label for="panic">fsm("panic")</label></li>
 					</ul>
 				</li>
 				<li id="yellow">
 					Yellow
 					<ul>
-						<li><label for="clear">clear()</label></li>
-						<li><label for="panic">panic()</label></li>
+						<li><label for="clear">fsm("clear")</label></li>
+						<li><label for="panic">fsm("panic")</label></li>
 					</ul>
 				</li>
 				<li id="red">
 					Red
 					<ul>
-						<li><label for="clear">clear()</label></li>
-						<li><label for="calm">calm()</label></li>
+						<li><label for="clear">fsm("clear")</label></li>
+						<li><label for="calm">fsm("calm")</label></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
-<pre><code><span class="c">// new Fsm(initial_state, events)</span>
-var fsm = new <span class="k">Fsm</span>(<span class="s">"green"</span>, {
+<pre><code><span class="c">// <span class="k">Fsm</span>( initial_state, events )</span>
+var fsm = <span class="k">Fsm</span>(<span class="s">"green"</span>, {
 	<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 	<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
 	<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-	<span class="m">clear</span>: { from: <span class="s">"yellow red"</span>,   to: <span class="s">"green"</span>  }
-}});</code></pre>
+	<span class="m">clear</span>: { from: <span class="s">"yellow red"</span>,   to: <span class="s">"green"</span>  } <span class="c">// this one too</span>
+});</code></pre>
 
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>
