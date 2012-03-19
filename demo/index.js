@@ -6,14 +6,13 @@
 		return window.document.getElementById(i);
 	}
 
-	var fsm = new window.Simple_state_machine({
-		initial: "green", // "none" if omitted
-		events: {
+	var fsm = Simple_state_machine("green", // initial is "none" if first parameter is omitted
+		{ // events
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 			calm:  { from: "red",          to: "yellow" },
-			clear: { from: "*",            to: "green"  } // can be called from all states
-		}
+			clear: { from: "*",            to: "green"  }, // can be called from all states
+			work:  { from: "green"                      } // if to state is missing, the state won't be changed when the event is called
 	});
 
 	function update(new_state, old_state) {
@@ -22,24 +21,26 @@
 		}
 		id(new_state).className = "current";
 
-		id("warn").disabled =  !fsm.warn.can();
-		id("panic").disabled = !fsm.panic.can();
-		id("calm").disabled =  !fsm.calm.can();
-		id("clear").disabled = !fsm.clear.can();
+		id("warn").disabled =  !fsm.can("warn");
+		id("panic").disabled = !fsm.can("panic");
+		id("calm").disabled =  !fsm.can("calm");
+		id("clear").disabled = !fsm.can("clear");
+		id("work").disabled = !fsm.can("work");
 
 		id("current").innerHTML = fsm.current;
 	}
 
 	function event() {
 		var old_state = fsm.current;
-		fsm[this.id]();
+		fsm(this.id);
 		update(fsm.current, old_state);
 	}
 
 	id("warn").onclick =
 	id("panic").onclick =
 	id("calm").onclick =
-	id("clear").onclick = event;
+	id("clear").onclick =
+	id("work").onclick = event;
 
 	update(fsm.current);
 })(this);

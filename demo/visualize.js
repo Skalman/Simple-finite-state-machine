@@ -112,14 +112,18 @@
 		var i, j, tmp_from, tmp_froms, tmp_event, tmp_events, tmp_to, tmp_tos,
 			from = {},
 			to = {},
-			events = fsm.options.events,
+			events = fsm.events,
 			colors = new Color();
 
 		for (i in events) {
 			tmp_from = events[i].from.split(" ");
 			tmp_to = events[i].to;
 
-			colors.state(tmp_to);
+			if (tmp_to) {
+				colors.state(tmp_to);
+			} else {
+				tmp_to = "<i>no change</i>";
+			}
 
 			// populate from
 			for (j in tmp_from) {
@@ -190,9 +194,7 @@
 			window.alert(e);
 			return;
 		}
-		fsm = new window.Simple_state_machine({
-			events: events
-		});
+		fsm = window.Simple_state_machine(events);
 		visualize(fsm);
 	}
 	id("visualize-button").onclick = refresh;

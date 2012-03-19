@@ -11,10 +11,11 @@
 
 		<div id="demo-interact">
 			<p>
-				<button id="warn">warn()</button>
-				<button id="panic">panic()</button>
-				<button id="calm">calm()</button>
-				<button id="clear">clear()</button>
+				<button id="warn">fsm(<span class="s">"warn"</span>)</button>
+				<button id="panic">fsm(<span class="s">"panic"</span>)</button>
+				<button id="calm">fsm(<span class="s">"calm"</span>)</button>
+				<button id="clear">fsm(<span class="s">"clear"</span>)</button>
+				<button id="work">fsm(<span class="s">"work"</span>)</button>
 			</p>
 			<p><code>fsm.<span class="m">current</span> === <span class="s">"<span id="current"></span>"</span></code></p>
 
@@ -22,36 +23,38 @@
 				<li id="green">
 					Green
 					<ul>
-						<li><label for="clear">clear()</label></li>
-						<li><label for="warn">warn()</label></li>
-						<li><label for="panic">panic()</label></li>
+						<li><label for="clear">fsm("clear")</label></li>
+						<li><label for="warn">fsm("warn")</label></li>
+						<li><label for="panic">fsm("panic")</label></li>
+						<li><label for="work">fsm("work")</label></li>
 					</ul>
 				</li>
 				<li id="yellow">
 					Yellow
 					<ul>
-						<li><label for="clear">clear()</label></li>
-						<li><label for="panic">panic()</label></li>
+						<li><label for="clear">fsm("clear")</label></li>
+						<li><label for="panic">fsm("panic")</label></li>
 					</ul>
 				</li>
 				<li id="red">
 					Red
 					<ul>
-						<li><label for="clear">clear()</label></li>
-						<li><label for="calm">calm()</label></li>
+						<li><label for="clear">fsm("clear")</label></li>
+						<li><label for="calm">fsm("calm")</label></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
-<pre><code>var fsm = new <span class="k">Simple_state_machine</span>({
-	<span class="m">initial</span>: <span class="s">"green"</span>, <span class="c">// "none" if omitted</span>
-	<span class="m">events</span>: {
+<pre><code><span class="c">// <span class="k">Simple_state_machine</span>( [initial,] events )</span>
+var fsm = <span class="k">Simple_state_machine</span>(<span class="s">"green"</span>, <span class="c">// initial is "none" if first parameter is omitted</span>
+	{ <span class="c">// events</span>
 		<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 		<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
 		<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-		<span class="m">clear</span>: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  } <span class="c">// can be called from all states</span>
-}});</code></pre>
+		<span class="m">clear</span>: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  }, <span class="c">// can be called from all states</span>
+		<span class="m">work</span>:  { from: <span class="s">"green"</span>                      } <span class="c">// if to state is absent, the state won't be changed when the event is called</span>
+});</code></pre>
 
 		<footer><ul>
 			<li>By <a href="http://wlff.se/">Dan Wolff</a></li>

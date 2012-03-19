@@ -12,17 +12,17 @@
 
 		<form id="code_input">
 
-			<pre><code><span class="k">var</span> fsm = new <span class="k">Simple_state_machine</span>({
-	<span class="m">events</span>: {</code></pre>
+			<pre><code><span class="k">var</span> fsm = <span class="k">Simple_state_machine</span>({ <span class="c">// events</span></code></pre>
 			<div class="indent">
 				<textarea id="code">warn:  { from: "green",        to: "yellow" },
 panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 calm:  { from: "red",          to: "yellow" },
-clear: { from: "*",            to: "green"  } // can be called from all states
+clear: { from: "*",            to: "green"  }, // can be called from all states
+work:  { from: "green"                      }
 </textarea>
 			</div>
 
-			<pre><code>}});</code> <button id="visualize-button" type="button">Visualize!</button></pre>
+			<pre><code>});</code> <button id="visualize-button" type="button">Visualize!</button></pre>
 		</form>
 
 		<div id="visualization">

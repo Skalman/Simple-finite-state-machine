@@ -3,31 +3,33 @@
  * No license, this code is in the public domain. I do however appreciate attribution.
  */
 
-function Simple_state_machine(options) {
+function Simple_state_machine(initial, events) {
 	"use strict";
-	var i,
-		events = options.events,
 
-		// variables in closure
-		self = this;
+	function fsm(event) {
+		if (!can(event)) {
+			throw "Cannot trigger '" + event + "'";
+		}
 
-	// public
-	self.options = options; // for inspection at a later point
-	self.current = options.initial || "none";
-
-	for (i in events) {
-		self[i] = (function (event, from, to) {
-			function event_function() {
-				if (!event_function.can(event)) {
-					throw "Cannot '" + event + "()'";
-				}
-				// else
-				self.current = to;
-			}
-			event_function.can = function () {
-				return from === " * " || from.indexOf(" " + self.current + " ") !== -1;
-			};
-			return event_function;
-		})(i, " " + events[i].from + " ", events[i].to);
+		// only change the current state if a to state is specified
+		if (events[event].to) {
+			fsm.current = events[event].to;
+		}
 	}
+
+	function can(event) {
+		var from = " " + events[event].from + " ";
+		return from === " * " || from.indexOf(" " + fsm.current + " ") !== -1;
+	}
+
+	// if the second parameter wasn't given, use "none" for initial state and use the first parameter as events
+	fsm.current = events ? initial : "none";
+	if (!events) {
+		events = initial;
+	}
+
+	// publish the can method and give access to events as well
+	fsm.can = can;
+	fsm.events = events;
+	return fsm;
 }
