@@ -6,6 +6,7 @@
 function Simple_state_machine(initial, events) {
 	"use strict";
 
+	// the state machine which will be returned
 	function fsm(event) {
 		if (!can(event)) {
 			throw "Cannot trigger '" + event + "'";
@@ -20,8 +21,10 @@ function Simple_state_machine(initial, events) {
 	function can(event) {
 		var from;
 		if (events[event]) {
+			// the event exists: pad with spaces
 			from = " " + events[event].from + " ";
 		} else {
+			// the event doesn't exist
 			from = "";
 		}
 		return from === " * " || from.indexOf(" " + fsm.current + " ") !== -1;
