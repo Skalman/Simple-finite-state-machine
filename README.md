@@ -1,7 +1,7 @@
 Simple state machine, *minimal edition*
 =======================================
 
-A finite state machine, stripped to the bare minimal. The minified version weighs about 100 bytes.
+A finite state machine, stripped to the bare minimal. The minified version weighs less than 100 bytes.
 
 The code has *no license*, it's in the public domain. I do however appreciate attribution.
 
