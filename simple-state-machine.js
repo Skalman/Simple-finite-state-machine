@@ -18,7 +18,12 @@ function Simple_state_machine(initial, events) {
 	}
 
 	function can(event) {
-		var from = " " + events[event].from + " ";
+		var from;
+		if (events[event]) {
+			from = " " + events[event].from + " ";
+		} else {
+			from = "";
+		}
 		return from === " * " || from.indexOf(" " + fsm.current + " ") !== -1;
 	}
 
