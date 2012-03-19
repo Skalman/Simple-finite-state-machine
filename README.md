@@ -40,7 +40,7 @@ The methods may be used as follows.
 
 	// fsm.current === "green"
 	if (fsm.can("calm"))
-		fsm("calm"); // will never happen - can only calm() from red
+		fsm("calm"); // will never happen - can only calm from red
 
 	fsm("panic"); // fsm.current === "red"
 	fsm("warn");  // throws exception! only allowed from green
