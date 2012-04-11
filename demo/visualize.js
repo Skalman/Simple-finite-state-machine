@@ -116,7 +116,11 @@
 			colors = new Color();
 
 		for (i in events) {
-			tmp_from = events[i].from.split(" ");
+			if (events[i].from) {
+				tmp_from = events[i].from.split(" ");
+			} else {
+				tmp_from = ["<i>all states</i>"];
+			}
 			tmp_to = events[i].to;
 
 			if (tmp_to) {

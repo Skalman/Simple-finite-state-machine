@@ -52,7 +52,7 @@ var fsm = <span class="k">Simple_state_machine</span>(<span class="s">"green"</s
 		<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 		<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
 		<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
-		<span class="m">clear</span>: { from: <span class="s">"*"</span>,            to: <span class="s">"green"</span>  }, <span class="c">// can be called from all states</span>
+		<span class="m">clear</span>: {                       to: <span class="s">"green"</span>  }, <span class="c">// if from state is absent, it can be called from all states</span>
 		<span class="m">work</span>:  { from: <span class="s">"green"</span>                      } <span class="c">// if to state is absent, the state won't be changed when the event is called</span>
 });</code></pre>
 

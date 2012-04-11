@@ -21,13 +21,13 @@ function Simple_state_machine(initial, events) {
 	function can(event) {
 		var from;
 		if (events[event]) {
-			// the event exists: pad with spaces
-			from = " " + events[event].from + " ";
+			// the event exists: from is now either the accepted from events or undefined
+			from = events[event].from;
 		} else {
 			// the event doesn't exist
-			from = "";
+			from = " "
 		}
-		return from === " * " || from.indexOf(" " + fsm.current + " ") !== -1;
+		return !from || (" " + from + " ").indexOf(" " + fsm.current + " ") !== -1;
 	}
 
 	// if the second parameter wasn't given, use "none" for initial state and use the first parameter as events

@@ -11,8 +11,8 @@
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 			calm:  { from: "red",          to: "yellow" },
-			clear: { from: "*",            to: "green"  }, // can be called from all states
-			work:  { from: "green"                      } // if to state is missing, the state won't be changed when the event is called
+			clear: {                       to: "green"  }, // if from state is absent, it can be called from all states
+			work:  { from: "green"                      } // if to state is absent, the state won't be changed when the event is called
 	});
 
 	function update(new_state, old_state) {
