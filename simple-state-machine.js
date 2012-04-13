@@ -9,7 +9,7 @@ function Simple_state_machine(initial, events) {
 	// the state machine which will be returned
 	function fsm(event) {
 		if (!can(event)) {
-			throw "Cannot trigger '" + event + "'";
+			throw "Can't " + event;
 		}
 
 		// only change the current state if a to state is specified
