@@ -24,8 +24,8 @@ function Simple_state_machine(initial, events) {
 			// the event exists: from is now either the accepted from events or undefined
 			from = events[event].from;
 		} else {
-			// the event doesn't exist
-			from = " "
+			// the event doesn't exist: set to something truthy that can't match a state
+			from = " ";
 		}
 		return !from || (" " + from + " ").indexOf(" " + fsm.current + " ") !== -1;
 	}
