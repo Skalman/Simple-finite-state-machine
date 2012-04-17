@@ -14,8 +14,8 @@ Usage
 
 Example borrowed from [Jake Gordon](https://github.com/jakesgordon/javascript-state-machine). Let's create a state machine with a few states and events.
 
-	// Simple_state_machine( [initial,] events )
-	var fsm = Simple_state_machine("green", // initial is "none" if first parameter is omitted
+	// Ssm( [initial,] events )
+	var fsm = Ssm("green", // initial is "none" if first parameter is omitted
 		{ // events
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states

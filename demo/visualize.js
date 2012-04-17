@@ -198,7 +198,7 @@
 			window.alert(e);
 			return;
 		}
-		fsm = window.Simple_state_machine(events);
+		fsm = window.Ssm(events);
 		visualize(fsm);
 	}
 	id("visualize-button").onclick = refresh;

@@ -46,8 +46,8 @@
 			</ul>
 		</div>
 
-<pre><code><span class="c">// <span class="k">Simple_state_machine</span>( [initial,] events )</span>
-var fsm = <span class="k">Simple_state_machine</span>(<span class="s">"green"</span>, <span class="c">// initial is "none" if first parameter is omitted</span>
+<pre><code><span class="c">// <span class="k">Ssm</span>( [initial,] events )</span>
+var fsm = <span class="k">Ssm</span>(<span class="s">"green"</span>, <span class="c">// initial is "none" if first parameter is omitted</span>
 	{ <span class="c">// events</span>
 		<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 		<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>

@@ -6,7 +6,7 @@
 		return window.document.getElementById(i);
 	}
 
-	var fsm = Simple_state_machine("green", // initial is "none" if first parameter is omitted
+	var fsm = Ssm("green", // initial is "none" if first parameter is omitted
 		{ // events
 			warn:  { from: "green",        to: "yellow" },
 			panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
