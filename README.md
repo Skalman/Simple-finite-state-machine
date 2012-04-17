@@ -2,7 +2,7 @@ Simple state machine
 ====================
 
 If you simply want to make sure that your application is in a valid state, this is the state machine to use.
-It is lightweight, standalone. Less than 0.5 kB.
+It is lightweight, standalone. Less than 0.25 kB.
 
 The code has *no license*, it's in the public domain. I do however appreciate attribution.
 
