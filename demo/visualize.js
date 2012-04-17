@@ -193,7 +193,7 @@
 			window.alert(e);
 			return;
 		}
-		fsm = window.Fsm(events);
+		fsm = window.Ssm(events);
 		visualize(fsm, events);
 	}
 	id("visualize-button").onclick = refresh;

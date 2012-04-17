@@ -13,7 +13,7 @@
 			calm:  { from: "red",          to: "yellow" },
 			clear: { from: "yellow red",   to: "green"  }
 		},
-		fsm = new window.Fsm("green", events);
+		fsm = new window.Ssm("green", events);
 
 	function update(new_state, old_state) {
 		if (old_state) {

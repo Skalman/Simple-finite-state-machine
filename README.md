@@ -13,8 +13,8 @@ Usage
 
 Let's create a state machine with a few states and events.
 
-	// Fsm( initial_state, events )
-	var fsm = Fsm("green", {
+	// Ssm( initial_state, events )
+	var fsm = Ssm("green", {
 		warn:  { from: "green",        to: "yellow" },
 		panic: { from: "green yellow", to: "red"    }, // allow to be called from multiple states
 		calm:  { from: "red",          to: "yellow" },

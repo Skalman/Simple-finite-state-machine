@@ -3,7 +3,7 @@
  * No license, this code is in the public domain. I do however appreciate attribution.
  */
 
-function Fsm(current_state, events) {
+function Ssm(current_state, events) {
 	"use strict";
 	return function (event) {
 		// a TypeError will be thrown if the event doesn't exist

@@ -41,8 +41,8 @@
 			</ul>
 		</div>
 
-<pre><code><span class="c">// <span class="k">Fsm</span>( initial_state, events )</span>
-var fsm = <span class="k">Fsm</span>(<span class="s">"green"</span>, {
+<pre><code><span class="c">// <span class="k">Ssm</span>( initial_state, events )</span>
+var fsm = <span class="k">Ssm</span>(<span class="s">"green"</span>, {
 	<span class="m">warn</span>:  { from: <span class="s">"green"</span>,        to: <span class="s">"yellow"</span> },
 	<span class="m">panic</span>: { from: <span class="s">"green yellow"</span>, to: <span class="s">"red"</span>    }, <span class="c">// allow to be called from multiple states</span>
 	<span class="m">calm</span>:  { from: <span class="s">"red"</span>,          to: <span class="s">"yellow"</span> },
